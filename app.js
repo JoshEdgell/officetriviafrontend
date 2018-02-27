@@ -4,6 +4,9 @@ app.controller('MainController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:12345/questions/';
   this.currentQuestion = {};
+  this.newQuestion = {
+    answers: []
+  };
   this.getQuestionIds = function(){
     $http({
       method: 'GET',
@@ -35,5 +38,41 @@ app.controller('MainController', ['$http', function($http){
       console.log(error);
     })
   }
-  this.getRandomQuestion();
+  this.createQuestion = function(){
+    this.fillAnswerArray();
+    $http({
+      method: 'POST',
+      url: this.url
+    }).then(function(response){
+      console.log(response,' response from created question');
+    }, function(error){
+      console.log(error, 'error from created question');
+    })
+  };
+  this.fillAnswerArray = function(){
+    let num = Math.floor(Math.random()*4);
+    this.newQuestion.correct = num
+    if (num === 0) {
+      this.newQuestion.answers[0] = this.newQuestion.answer;
+      this.newQuestion.answers[1] = this.newQuestion.distractors[0];
+      this.newQuestion.answers[2] = this.newQuestion.distractors[1];
+      this.newQuestion.answers[3] = this.newQuestion.distractors[2];
+    } else if (num === 1) {
+      this.newQuestion.answers[0] = this.newQuestion.distractors[0];
+      this.newQuestion.answers[1] = this.newQuestion.answer;
+      this.newQuestion.answers[2] = this.newQuestion.distractors[1];
+      this.newQuestion.answers[3] = this.newQuestion.distractors[2];
+    } else if (num === 2) {
+      this.newQuestion.answers[0] = this.newQuestion.distractors[0];
+      this.newQuestion.answers[1] = this.newQuestion.distractors[1];
+      this.newQuestion.answers[2] = this.newQuestion.answer;
+      this.newQuestion.answers[3] = this.newQuestion.distractors[2];
+    } else {
+      this.newQuestion.answers[0] = this.newQuestion.distractors[0];
+      this.newQuestion.answers[1] = this.newQuestion.distractors[1];
+      this.newQuestion.answers[2] = this.newQuestion.distractors[2];
+      this.newQuestion.answers[3] = this.newQuestion.answer;
+    }
+    console.log(this.newQuestion, 'new question');
+  }
 }])

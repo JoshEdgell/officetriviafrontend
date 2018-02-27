@@ -9,6 +9,13 @@
   </head>
   <body ng-controller="MainController as main">
     <h1>Welcome to the Office Trivia App!</h1>
-    {{main.currentQuestion}} <button ng-click="main.deleteQuestion(main.currentQuestion.id);">Delete</button>
+    <form ng-submit="main.createQuestion()">
+      Question: <input type="text" ng-model="main.newQuestion.question"></br>
+      Answer: <input type="text" ng-model="main.newQuestion.answer"></br>
+      Distrator 1: <input type="text" ng-model="main.newQuestion.distractors[0]"></br>
+      Distractor 2: <input type="text" ng-model="main.newQuestion.distractors[1]"></br>
+      Distractor 3: <input type="text" ng-model="main.newQuestion.distractors[2]"></br>
+      <input type="submit" value="Create Question"/>
+    </form>
   </body>
 </html>
