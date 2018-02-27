@@ -42,7 +42,8 @@ app.controller('MainController', ['$http', function($http){
     this.fillAnswerArray();
     $http({
       method: 'POST',
-      url: this.url
+      url: this.url,
+      data: this.newQuestion
     }).then(function(response){
       console.log(response,' response from created question');
     }, function(error){
