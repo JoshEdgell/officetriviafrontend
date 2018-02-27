@@ -9,5 +9,6 @@
   </head>
   <body ng-controller="MainController as main">
     <h1>Welcome to the Office Trivia App!</h1>
+    {{main.currentQuestion}} <button ng-click="main.deleteQuestion(main.currentQuestion.id);">Delete</button>
   </body>
 </html>
