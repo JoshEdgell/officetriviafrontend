@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Yo!</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
   </head>
   <body ng-controller="MainController as main">
 
@@ -27,8 +27,11 @@
         <button ng-click="main.getRandomQuestion();">Get Random Question</button>
         <button ng-click="main.showEdit = !main.showEdit">Edit Options</button>
         <p>{{main.currentQuestion.question}}</p>
-        <div ng-repeat="choice in main.currentQuestion.answers">
-          {{choice}}
+        <div ng-if="main.currentQuestion.answers != null">
+          <button ng-click="main.checkAnswer(0);">{{main.currentQuestion.answers[0]}}</button>
+          <button ng-click="main.checkAnswer(1);">{{main.currentQuestion.answers[1]}}</button>
+          <button ng-click="main.checkAnswer(2);">{{main.currentQuestion.answers[2]}}</button>
+          <button ng-click="main.checkAnswer(3);">{{main.currentQuestion.answers[3]}}</button>
         </div>
       </div>
       <div class="editQuestion" ng-if="main.showEdit">

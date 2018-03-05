@@ -57,27 +57,32 @@ app.controller('MainController', ['$http', function($http){
   this.fillAnswerArray = function(){
     let num = Math.floor(Math.random()*4);
     this.newQuestion.correct = num
+    this.newQuestion.answers = [];
     if (num === 0) {
+      console.log('answer 0')
       this.newQuestion.answers[0] = this.newQuestion.answer;
       this.newQuestion.answers[1] = this.newQuestion.distractors[0];
       this.newQuestion.answers[2] = this.newQuestion.distractors[1];
       this.newQuestion.answers[3] = this.newQuestion.distractors[2];
     } else if (num === 1) {
+      console.log('answer 1')
       this.newQuestion.answers[0] = this.newQuestion.distractors[0];
       this.newQuestion.answers[1] = this.newQuestion.answer;
       this.newQuestion.answers[2] = this.newQuestion.distractors[1];
       this.newQuestion.answers[3] = this.newQuestion.distractors[2];
     } else if (num === 2) {
+      console.log('answer 2')
       this.newQuestion.answers[0] = this.newQuestion.distractors[0];
       this.newQuestion.answers[1] = this.newQuestion.distractors[1];
       this.newQuestion.answers[2] = this.newQuestion.answer;
       this.newQuestion.answers[3] = this.newQuestion.distractors[2];
     } else {
+      console.log('answer 3')
       this.newQuestion.answers[0] = this.newQuestion.distractors[0];
       this.newQuestion.answers[1] = this.newQuestion.distractors[1];
       this.newQuestion.answers[2] = this.newQuestion.distractors[2];
       this.newQuestion.answers[3] = this.newQuestion.answer;
-    }
+    };
     console.log(this.newQuestion, 'new question');
   };
   this.editQuestion = function(id){
@@ -92,4 +97,15 @@ app.controller('MainController', ['$http', function($http){
       console.log(error, 'edit error')
     })
   };
+  this.checkAnswer = function(num){
+    $http({
+      url: this.url + 'check/' + this.currentQuestion.id,
+      method: 'PUT',
+      data: { guess: num}
+    }).then(function(response){
+      console.log(response.data);
+    }, function(error){
+      console.log(error);
+    })
+  }
 }])
