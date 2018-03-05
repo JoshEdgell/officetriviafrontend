@@ -9,6 +9,18 @@ app.controller('MainController', ['$http', function($http){
   };
   this.showEdit = false;
   this.showQuestion = false;
+  this.showQuestionDiv = false;
+  this.writeQuestionsDiv = false;
+  this.showCorrectDiv = false;
+  this.showIncorrectDiv = false;
+  this.hideAll = function(){
+    this.showEdit = false;
+    this.showQuestion = false;
+    this.showQuestionDiv = false;
+    this.writeQuestionsDiv = false;
+    this.showCorrectDiv = false;
+    this.showIncorrectDiv = false;
+  };
   this.getQuestionIds = function(){
     $http({
       method: 'GET',
@@ -19,13 +31,27 @@ app.controller('MainController', ['$http', function($http){
       console.log(error, 'error')
     })
   };
+  this.getFirstQuestion = function(){
+    this.hideAll();
+    this.getRandomQuestion();
+    this.showQuestionDiv = true;
+  };
+  this.getAnotherQuestion = function(){
+    this.currentQuestion = {};
+    this.hideAll();
+    this.getRandomQuestion();
+    this.showQuestionDiv = true;
+  };
+  this.writeQuestions = function(){
+    this.hideAll();
+    this.writeQuestionsDiv = true;
+  }
   this.getRandomQuestion = function(){
     $http({
       method: 'GET',
       url: this.url + 'random'
     }).then(function(response){
       controller.currentQuestion = response.data;
-      console.log(controller.currentQuestion, 'current question');
       controller.showQuestion = true;
     }, function(error){
       console.log(error, 'random question error');
@@ -106,7 +132,12 @@ app.controller('MainController', ['$http', function($http){
       method: 'PUT',
       data: { guess: num}
     }).then(function(response){
-      console.log(response.data);
+      controller.showQuestionDiv = false;
+      if (response.data == 'correct') {
+        controller.showCorrectDiv = true;
+      } else {
+        controller.showIncorrectDiv = true;
+      }
     }, function(error){
       console.log(error);
     })

@@ -1,5 +1,13 @@
 h1 {
-  margin-top: 1em;
+  margin: 1em 0;
+}
+h3 {
+  margin: 1em 0;
+}
+button {
+  border-radius: 5px;
+  display: block;
+  margin: 1em auto;
 }
 .openingModal {
   position: fixed;
@@ -17,4 +25,46 @@ h1 {
 .openingModal button {
   display: block;
   margin: 0.5em auto;
+}
+
+.questionDiv {
+  position: fixed;
+  background-color: rgb(198,198,198);
+  width: 80%;
+  margin-top: 3em;
+  margin-left: 10%;
+  text-align: center;
+  border-radius: 2em;
+}
+/* .answerButton {
+  display: block;
+  margin: 1em auto;
+} */
+.correctAnswer {
+  position: fixed;
+  background-color: rgb(198,198,198);
+  width: 80%;
+  margin-top: 3em;
+  margin-left: 10%;
+  text-align: center;
+  border-radius: 2em;
+}
+.incorrectAnswer {
+  position: fixed;
+  background-color: rgb(198,198,198);
+  width: 80%;
+  margin-top: 3em;
+  margin-left: 10%;
+  text-align: center;
+  border-radius: 2em;
+}
+
+.writeQuestionsDiv {
+  position: fixed;
+  background-color: rgb(198,198,198);
+  width: 80%;
+  margin-top: 3em;
+  margin-left: 10%;
+  text-align: center;
+  border-radius: 2em;
 }

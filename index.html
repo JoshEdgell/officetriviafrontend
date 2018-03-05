@@ -14,9 +14,34 @@
     <h1>Superfan Trivia: Office Edition!</h1>
     <p>Welcome to Superfan Trivia: Office Edition - the web's open-source (American version) Office trivia game!</p>
     <p>Since this is an open-source game, you get to make the game better by adding more (and tougher) questions to stump fellow Superfans.  The more questions you help create, the more fun you can help spread to other fans of The Office.</p>
-    <p>Keep coming back to find more questions and game updates, and your confidence will soar.  Toby-out and leave, and you'll feel like a real Nellie.</p>
-    <button class="opening">Answer Questions</button>
-    <button class="opening">Write Questions</button>
+    <p>Keep coming back to answer more questions and see new game updates, and your confidence will soar.  Toby-out and leave, and you'll feel like a real Nellie.</p>
+    <button class="opening" ng-click="main.getFirstQuestion();">Answer Questions</button>
+    <button class="opening" ng-click="main.writeQuestions();">Write Questions</button>
+    <small>Dreamt up, coded, and maintained by <a href="http://www.joshedgell.com" target="blank">Josh Edgell</a> </small>
+  </div>
+
+  <div class="questionDiv" ng-show="main.showQuestionDiv">
+    <h3>{{main.currentQuestion.question}}</h3>
+    <button class="answerButton" ng-click="main.checkAnswer(0);">{{main.currentQuestion.answers[0]}}</button>
+    <button class="answerButton" ng-click="main.checkAnswer(1);">{{main.currentQuestion.answers[1]}}</button>
+    <button class="answerButton" ng-click="main.checkAnswer(2);">{{main.currentQuestion.answers[2]}}</button>
+    <button class="answerButton" ng-click="main.checkAnswer(3);">{{main.currentQuestion.answers[3]}}</button>
+  </div>
+
+  <div class="correctAnswer" ng-show="main.showCorrectDiv">
+    <h3>You got that correct!</h3>
+    <button ng-click="main.getAnotherQuestion();">Answer Another Question</button>
+    <button ng-click="main.writeQuestions();">Write a Question</button>
+  </div>
+
+  <div class="incorrectAnswer" ng-show="main.showIncorrectDiv">
+    <h3>You missed that one!</h3>
+    <button ng-click="main.getAnotherQuestion();">Try Another Question</button>
+    <button ng-click="main.writeQuestions();">Write a Question</button>
+  </div>
+
+  <div class="writeQuestionsDiv" ng-show="main.writeQuestionsDiv">
+    <h1>Write Questions!</h1>
   </div>
 
 
