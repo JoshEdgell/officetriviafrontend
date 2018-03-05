@@ -8,14 +8,39 @@
     <script src="app.js"></script>
   </head>
   <body ng-controller="MainController as main">
+
     <h1>Welcome to the Office Trivia App!</h1>
-    <form ng-submit="main.createQuestion()">
-      Question: <input type="text" ng-model="main.newQuestion.question"></br>
-      Answer: <input type="text" ng-model="main.newQuestion.answer"></br>
-      Distrator 1: <input type="text" ng-model="main.newQuestion.distractors[0]"></br>
-      Distractor 2: <input type="text" ng-model="main.newQuestion.distractors[1]"></br>
-      Distractor 3: <input type="text" ng-model="main.newQuestion.distractors[2]"></br>
-      <input type="submit" value="Create Question"/>
-    </form>
+    <div class="create">
+      <form ng-submit="main.createQuestion()">
+        Question: <input type="text" ng-model="main.newQuestion.question"></br>
+        Answer: <input type="text" ng-model="main.newQuestion.answer"></br>
+        Distrator 1: <input type="text" ng-model="main.newQuestion.distractors[0]"></br>
+        Distractor 2: <input type="text" ng-model="main.newQuestion.distractors[1]"></br>
+        Distractor 3: <input type="text" ng-model="main.newQuestion.distractors[2]"></br>
+        <input type="submit" value="Create Question"/>
+      </form>
+    </br></br>
+    </div>
+
+    <div class="random">
+      <div class="showQuestion">
+        <button ng-click="main.getRandomQuestion();">Get Random Question</button>
+        <button ng-click="main.showEdit = !main.showEdit">Edit Options</button>
+        <p>{{main.currentQuestion.question}}</p>
+        <div ng-repeat="choice in main.currentQuestion.answers">
+          {{choice}}
+        </div>
+      </div>
+      <div class="editQuestion" ng-if="main.showEdit">
+        <textarea ng-model="main.currentQuestion.question"></textarea></br>
+        <div>
+          <input type="text" ng-model="main.currentQuestion.answers[0]"></br>
+          <input type="text" ng-model="main.currentQuestion.answers[1]"></br>
+          <input type="text" ng-model="main.currentQuestion.answers[2]"></br>
+          <input type="text" ng-model="main.currentQuestion.answers[3]"></br>
+        </div>
+        <button ng-click="main.editQuestion(main.currentQuestion.id);">Edit Question</button>
+      </div>
+    </div>
   </body>
 </html>

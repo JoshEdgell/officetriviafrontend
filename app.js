@@ -2,11 +2,12 @@ const app = angular.module('OfficeTrivia', []);
 
 app.controller('MainController', ['$http', function($http){
   const controller = this;
-  this.url = 'http://localhost:12345/questions/';
+  this.url = 'http://localhost:3000/questions/';
   this.currentQuestion = {};
   this.newQuestion = {
     answers: []
   };
+  this.showEdit = false;
   this.getQuestionIds = function(){
     $http({
       method: 'GET',
@@ -45,6 +46,7 @@ app.controller('MainController', ['$http', function($http){
       url: this.url,
       data: this.newQuestion
     }).then(function(response){
+      controller.newQuestion = {};
       console.log(response,' response from created question');
     }, function(error){
       console.log(error, 'error from created question');
@@ -75,5 +77,17 @@ app.controller('MainController', ['$http', function($http){
       this.newQuestion.answers[3] = this.newQuestion.answer;
     }
     console.log(this.newQuestion, 'new question');
-  }
+  };
+  this.editQuestion = function(id){
+    console.log(this.currentQuestion);
+    $http({
+      url: this.url + 'edit/' + this.currentQuestion.id,
+      method: 'PUT',
+      data: this.currentQuestion
+    }).then(function(response){
+      console.log(response, 'edited question');
+    },function(error){
+      console.log(error, 'edit error')
+    })
+  };
 }])

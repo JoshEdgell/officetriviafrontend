@@ -1,0 +1,9 @@
+.random {
+  display: flex;
+}
+.showQuestion {
+  width: 50%;
+}
+.showEdit {
+  width: 50%;
+}
