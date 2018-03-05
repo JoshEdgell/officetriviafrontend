@@ -8,6 +8,7 @@ app.controller('MainController', ['$http', function($http){
     answers: []
   };
   this.showEdit = false;
+  this.showQuestion = false;
   this.getQuestionIds = function(){
     $http({
       method: 'GET',
@@ -25,6 +26,7 @@ app.controller('MainController', ['$http', function($http){
     }).then(function(response){
       controller.currentQuestion = response.data;
       console.log(controller.currentQuestion, 'current question');
+      controller.showQuestion = true;
     }, function(error){
       console.log(error, 'random question error');
     })
@@ -98,6 +100,7 @@ app.controller('MainController', ['$http', function($http){
     })
   };
   this.checkAnswer = function(num){
+    this.showQuestion = false;
     $http({
       url: this.url + 'check/' + this.currentQuestion.id,
       method: 'PUT',

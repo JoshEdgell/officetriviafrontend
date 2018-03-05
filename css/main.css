@@ -1,9 +1,20 @@
-.random {
-  display: flex;
+h1 {
+  margin-top: 1em;
 }
-.showQuestion {
-  width: 50%;
+.openingModal {
+  position: fixed;
+  background-color: rgb(198,198,198);
+  width: 80%;
+  margin-top: 3em;
+  margin-left: 10%;
+  text-align: center;
+  border-radius: 2em;
 }
-.showEdit {
-  width: 50%;
+.openingModal p {
+  width: 90%;
+  margin-left: 5%;
+}
+.openingModal button {
+  display: block;
+  margin: 0.5em auto;
 }
