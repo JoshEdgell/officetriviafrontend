@@ -35,10 +35,12 @@ app.controller('MainController', ['$http', function($http){
       url: this.url + id
     }).then(function(response){
       console.log(response, 'response from delete method');
+      controller.currentQuestion = {};
+      controller.showEdit = false;
     }, function(error){
       console.log(error);
     })
-  }
+  };
   this.createQuestion = function(){
     this.fillAnswerArray();
     $http({
