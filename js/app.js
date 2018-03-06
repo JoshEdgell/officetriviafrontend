@@ -13,6 +13,7 @@ app.controller('MainController', ['$http', function($http){
   this.writeQuestionsDiv = false;
   this.showCorrectDiv = false;
   this.showIncorrectDiv = false;
+  this.showReviewQuestion = false;
   this.hideAll = function(){
     this.showEdit = false;
     this.showQuestion = false;
@@ -20,6 +21,7 @@ app.controller('MainController', ['$http', function($http){
     this.writeQuestionsDiv = false;
     this.showCorrectDiv = false;
     this.showIncorrectDiv = false;
+    this.showReviewQuestion = false;
   };
   this.getQuestionIds = function(){
     $http({
@@ -77,7 +79,8 @@ app.controller('MainController', ['$http', function($http){
       data: this.newQuestion
     }).then(function(response){
       controller.newQuestion = {};
-      console.log(response,' response from created question');
+      controller.hideAll();
+      controller.showReviewQuestion = true;
     }, function(error){
       console.log(error, 'error from created question');
     })

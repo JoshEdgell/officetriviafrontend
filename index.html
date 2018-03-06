@@ -17,7 +17,7 @@
     <p>Keep coming back to answer more questions and see new game updates, and your confidence will soar.  Toby-out and leave, and you'll feel like a real Nellie.</p>
     <button class="opening" ng-click="main.getFirstQuestion();">Answer Questions</button>
     <button class="opening" ng-click="main.writeQuestions();">Write Questions</button>
-    <small>Dreamt up, coded, and maintained by <a href="http://www.joshedgell.com" target="blank">Josh Edgell</a> </small>
+    <small>Dreamed up, coded, and maintained by <a href="http://www.joshedgell.com" target="blank">Josh Edgell</a> </small>
   </div>
 
   <div class="questionDiv" ng-show="main.showQuestionDiv">
@@ -42,6 +42,32 @@
 
   <div class="writeQuestionsDiv" ng-show="main.writeQuestionsDiv">
     <h1>Write Questions!</h1>
+    <div class="create">
+      <form ng-submit="main.createQuestion()">
+        Question: </br>
+        <textarea class="questionInput" ng-model="main.newQuestion.question"></textarea>
+        </br>
+        <div class="answerInputs">
+          <div class="correctInput">
+            Correct Answer: <input type="text" ng-model="main.newQuestion.answer">
+          </div>
+          <div class="incorrectInput">
+            Incorrect Answers: <input type="text" ng-model="main.newQuestion.distractors[0]"></br>
+            <input type="text" ng-model="main.newQuestion.distractors[1]"></br>
+            <input type="text" ng-model="main.newQuestion.distractors[2]"></br>
+          </div>
+        </div>
+        <input type="submit" class="submitNew" value="Create Question"/>
+      </form>
+    </div>
+  </div>
+
+  <div class="reviewQuestionDiv" ng-show="main.showReviewQuestion">
+    <h1>Thank you, Superfan!</h1>
+    <p>Every new question makes Superfan Trivia more...super!</p>
+    <p>Thank you for contributing to open-source trivia.</p>
+    <button class="opening" ng-click="main.getAnotherQuestion();">Answer Questions</button>
+    <button class="opening" ng-click="main.writeQuestions();">Write Another Question</button>
   </div>
 
 
